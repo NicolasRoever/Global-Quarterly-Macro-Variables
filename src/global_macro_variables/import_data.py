@@ -41,6 +41,17 @@ def import_quarterly_gdp_data_in_USD_from_oecd(xml_query_link):
 
     return data
 
+def import_quarterly_CPI_data_from_oecd(xml_query_link):
+     
+        r = requests.get(xml_query_link)
+        dictionary_data = xmltodict.parse(r.content)
+    
+        data = clean_oecd_xml_response(dictionary_data)
+    
+        data = data.rename(columns={"@value": "Eurostat_CPI_Annualised Growth_Rate"})
+    
+        return data
+
 
 def import_real_quarterly_gdp_data_from_oecd(xml_query_link):
     """This function imports the real quarterly GDP data from the OECD API."""
@@ -49,7 +60,7 @@ def import_real_quarterly_gdp_data_from_oecd(xml_query_link):
 
     data = clean_oecd_xml_response(dictionary_data)
 
-    data = data.rename(columns={"@value": "Real_Quarterly_GDP_in_Domestic_Currency"})
+    data = data.rename(columns={"@value": "Real_Quarterly_GVA_in_Domestic_Currency"})
 
     return data
 
