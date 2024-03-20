@@ -32,7 +32,10 @@ def task_generate_output_data(
     # Import Data
 
     if produces is None:
-        produces = [BLD / "output_data.xlsx", TOP_DIR / "output_data.xlsx"]
+        produces = [
+            BLD / "Quarterly Macroeconomic Variables.xlsx",
+            TOP_DIR / "Quarterly Macroeconomic Variables.xlsx",
+        ]
     quarterly_gdp_USD = pd.read_pickle(depends_on["quarterly_gdp_USD"])
     debt_by_gdp = pd.read_pickle(depends_on["debt_by_gdp"])
     current_account = pd.read_pickle(depends_on["current_account"])

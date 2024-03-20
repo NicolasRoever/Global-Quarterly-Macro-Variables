@@ -1,13 +1,14 @@
 # Quarterly Macroeconomic Variables
 
-This is the code to produce dataset *Quarterly Macroeconomic Variables*. I merged and
-cleaned macroeconomic data from multiple public sources. The dataset contains many of
-the most important macroeconomic indicators such as GDP, inflation, etc. for 39
-countries. See Table \\ref{tab:data_variables} for all available variables. All
-variables are available from about the year 2000 onwards, but some time-series go as far
-back as 1960. The data is in a format perfect for time-series regressions
+This is the code to produce dataset *Quarterly Macroeconomic Variables*. I merge and
+cleaned macroeconomic data from multiple public sources. The final dataset contains many
+of the most important macroeconomic indicators such as GDP, inflation, etc. for 39
+countries.
 
-## Usage
+You find the produced dataset in this directory (the Excel file *Quarterly Macroeconomic
+Variables.xlsx*)
+
+## How to Produce the Dataset Yourself
 
 To get started, create and activate the environment with
 
