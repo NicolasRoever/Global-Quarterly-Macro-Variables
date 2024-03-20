@@ -21,4 +21,6 @@ dependencies:
   - setuptools_scm
   - statsmodels
   - toml
-  - pip: [-e ., kaleido, pdbp, requests, xmltodict, fredapi]
+  - matplotlib
+  - seaborn
+  - pip: [-e ., kaleido, pdbp, requests, xmltodict, fredapi, openpyxl]

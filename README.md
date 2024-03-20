@@ -1,10 +1,11 @@
-# global_macro_variables
+# Quarterly Macroeconomic Variables
 
-[![image](https://img.shields.io/github/actions/workflow/status/NicolasRoever/global_macro_variables/main.yml?branch=main)](https://github.com/NicolasRoever/global_macro_variables/actions?query=branch%3Amain)
-[![image](https://codecov.io/gh/NicolasRoever/global_macro_variables/branch/main/graph/badge.svg)](https://codecov.io/gh/NicolasRoever/global_macro_variables)
-
-[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/NicolasRoever/global_macro_variables/main.svg)](https://results.pre-commit.ci/latest/github/NicolasRoever/global_macro_variables/main)
-[![image](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+This is the code to produce dataset *Quarterly Macroeconomic Variables*. I merged and
+cleaned macroeconomic data from multiple public sources. The dataset contains many of
+the most important macroeconomic indicators such as GDP, inflation, etc. for 39
+countries. See Table \\ref{tab:data_variables} for all available variables. All
+variables are available from about the year 2000 onwards, but some time-series go as far
+back as 1960. The data is in a format perfect for time-series regressions
 
 ## Usage
 

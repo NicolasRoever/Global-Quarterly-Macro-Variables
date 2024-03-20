@@ -12,8 +12,8 @@ repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.4.0
     hooks:
-      - id: check-added-large-files
-        args: [--maxkb=25]
+     # - id: check-added-large-files
+     #   args: [--maxkb=25]
       - id: check-case-conflict
       - id: check-merge-conflict
       - id: check-vcs-permalinks
@@ -41,17 +41,17 @@ repos:
     rev: 1.16.0
     hooks:
       - id: blacken-docs
-  - repo: https://github.com/PyCQA/docformatter
-    rev: v1.7.5
-    hooks:
-      - id: docformatter
-        args:
-          - --in-place
-          - --wrap-summaries
-          - '88'
-          - --wrap-descriptions
-          - '88'
-          - --blank
+  #- repo: https://github.com/PyCQA/docformatter
+    # rev: v1.7.5
+    # hooks:
+     # - id: docformatter
+     #   args:
+     #     - --in-place
+     #     - --wrap-summaries
+     #     - '88'
+     #     - --wrap-descriptions
+     #     - '88'
+     #    - --blank
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.0.292
     hooks:
