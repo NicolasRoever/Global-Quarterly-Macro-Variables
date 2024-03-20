@@ -8,6 +8,9 @@ countries.
 You find the produced dataset in this directory (the Excel file *Quarterly Macroeconomic
 Variables.xlsx*)
 
+The dataset is also published via the Harvard Data Universe
+[here](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi%3A10.7910%2FDVN%2F9CPKBB&version=DRAFT)
+
 ## How to Produce the Dataset Yourself
 
 To get started, create and activate the environment with
