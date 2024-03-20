@@ -26,17 +26,15 @@ dependencies_task_generate_output_data = {
 def task_generate_output_data(
     depends_on=dependencies_task_generate_output_data,
     country_mapping_codes_names=COUNTRY_CODES_AND_NAMES_MAPPING,
-    produces=None,
+    produces=[  # noqa
+        BLD / "Quarterly Macroeconomic Variables.xlsx",
+        TOP_DIR / "Quarterly Macroeconomic Variables.xlsx",
+    ],
 ):
     """This function generates the output data by taking the mean of the input data."""
     # Import Data
 
-    if produces is None:
-        produces = [
-            BLD / "Quarterly Macroeconomic Variables.xlsx",
-            TOP_DIR / "Quarterly Macroeconomic Variables.xlsx",
-        ]
-    quarterly_gdp_USD = pd.read_pickle(depends_on["quarterly_gdp_USD"])
+    quarterly_gdp_USD = pd.read_pickle(depends_on["quarterly_gdp_USD"])  # noqa
     debt_by_gdp = pd.read_pickle(depends_on["debt_by_gdp"])
     current_account = pd.read_pickle(depends_on["current_account"])
     real_quarterly_gva = pd.read_pickle(depends_on["real_quarterly_gva"])
