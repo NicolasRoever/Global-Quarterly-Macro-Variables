@@ -65,6 +65,7 @@ FRED_INTEREST_RATE_SERIES = {
 
 
 
+
 OECD_QUARTERLY_GDP_USD_XML_QUERY_LINK = "https://sdmx.oecd.org/public/rest/data/OECD.SDD.NAD,DSD_NAMAIN1@DF_QNA_EXPENDITURE_USD,1.0/Q...S1..B1GQ.....V..?dimensionAtObservation=AllDimensions"
 
 
@@ -78,4 +79,16 @@ OECD_REAL_QUARTERLY_GDP_QUERY_LINK = "https://sdmx.oecd.org/public/rest/data/OEC
 
 EUROSTAT_CPI_QUARTERLY_QUERY_LINK = "https://sdmx.oecd.org/public/rest/data/OECD.SDD.TPS,DSD_PRICES@DF_PRICES_HICP,1.0/.M.HICP.CPI.PA._T.N.GY?dimensionAtObservation=AllDimensions"
 
+
+OECD_DATA_QUERY_LINKS = {"debt_by_gdp.pkl": OECD_QUARTERLY_DEBT_AS_PERCENT_GDP_QUERY_LINK, "quarterly_gdp_USD.pkl": OECD_QUARTERLY_GDP_USD_XML_QUERY_LINK, "current_account.pkl": OECD_QUARTERLY_CURRENT_ACCOUNT_QUERY_LINK, "real_quarterly_gva.pkl": OECD_REAL_QUARTERLY_GDP_QUERY_LINK, "cpi.pkl": EUROSTAT_CPI_QUARTERLY_QUERY_LINK}
+
+
+OECD_VARIABLE_NAMES = {
+    "debt_by_gdp.pkl":"Public_Debt_as_%_of_GDP",
+    "quarterly_gdp_USD.pkl":"GDP_in_USD_Current_Prices",
+    "current_account.pkl":"Current_Account_in_USD",
+    "real_quarterly_gva.pkl":"Real_Quarterly_GVA_in_Domestic_Currency",
+    "cpi.pkl":"Eurostat_CPI_Annualised Growth_Rate"
+
+}
 
