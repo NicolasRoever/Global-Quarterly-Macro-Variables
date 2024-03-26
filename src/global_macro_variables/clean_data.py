@@ -31,7 +31,14 @@ def resample_daily_time_series_data_for_multiple_countries_to_quarterly(
 ):
     """Resample the data on a quarterly basis for each country."""
     # Group by 'Country' and resample on a quarterly basis
-    return data.groupby("Country").resample("Q", on="Date").mean().reset_index()
+
+    data_resampled = (
+        data.groupby("Country").resample("Q", on="Date").mean().reset_index()
+    )
+
+    data_resampled["Date_Quarterly"] = data_resampled["Date"].dt.to_period("Q")
+
+    return data_resampled
 
 
 def left_join_dataframes(*dfs, on="Date_Quarter"):
@@ -138,7 +145,7 @@ def merge_OECD_data_with_fred_10y_interest_rates(oecd_data, fred_interest_rates)
     merged_data = pd.merge(
         oecd_data,
         fred_interest_rates,
-        on=["Date", "Country"],
+        on=["Date_Quarterly", "Country"],
         how="left",
         validate="one_to_one",
     )

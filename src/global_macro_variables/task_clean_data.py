@@ -6,9 +6,25 @@ from global_macro_variables.clean_data import (
     merge_all_OECD_dataframes_for_final_output,
     merge_OECD_data_with_fred_10y_interest_rates,
     merge_quarterly_fred_dataseries,
+    resample_daily_time_series_data_for_multiple_countries_to_quarterly,
     turn_daily_time_series_into_quarterly_data,
 )
 from global_macro_variables.config import BLD, COUNTRY_CODES_AND_NAMES_MAPPING, TOP_DIR
+
+
+def task_resample_fred_10y_interest_rate_to_quarterly_data(
+    depends_on=BLD / "10_year_maturity_bond_yields.pkl",
+    produces=BLD / "10_year_maturity_bond_yields_quarterly.pkl",
+):
+    data = pd.read_pickle(depends_on)
+
+    data["Date"] = pd.to_datetime(data["Date"])
+
+    data_resampled = (
+        resample_daily_time_series_data_for_multiple_countries_to_quarterly(data)
+    )
+    data_resampled.to_pickle(produces)
+
 
 dependencies_task_generate_output_data = {
     "quarterly_gdp_USD": BLD / "quarterly_gdp_USD.pkl",
@@ -19,7 +35,7 @@ dependencies_task_generate_output_data = {
     "vix": BLD / "vix.pkl",
     "3_month_US_treasuries": BLD / "3_month_US_treasuries.pkl",
     "nasdaq": BLD / "nasdaq.pkl",
-    "10_year_maturity_bond_yields": BLD / "10_year_maturity_bond_yields.pkl",
+    "10_year_maturity_bond_yields": BLD / "10_year_maturity_bond_yields_quarterly.pkl",
 }
 
 
@@ -61,16 +77,16 @@ def task_generate_output_data(
 
     merged_OECD_data = merged_OECD_data.dropna(subset=["Country"])
 
+    merged_OECD_data["Date_Quarterly"] = pd.to_datetime(
+        merged_OECD_data["Date"],
+    ).dt.to_period("Q")
+
     # Add 10y interest rates
 
     data_with_interest_rates = merge_OECD_data_with_fred_10y_interest_rates(
         merged_OECD_data,
         ten_year_maturity_bond_yields,
     )
-
-    data_with_interest_rates["Date_Quarterly"] = pd.to_datetime(
-        data_with_interest_rates["Date"],
-    ).dt.to_period("Q")
 
     # Merge and add FRED data
 
