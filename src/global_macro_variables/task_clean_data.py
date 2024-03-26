@@ -85,7 +85,9 @@ def task_generate_output_data(
 
     data_with_interest_rates = merge_OECD_data_with_fred_10y_interest_rates(
         merged_OECD_data,
-        ten_year_maturity_bond_yields,
+        ten_year_maturity_bond_yields[
+            ["Date_Quarterly", "Country", "10y_Maturity_Bond_Yield"]
+        ],
     )
 
     # Merge and add FRED data

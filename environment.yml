@@ -23,4 +23,12 @@ dependencies:
   - toml
   - matplotlib
   - seaborn
-  - pip: [-e ., kaleido, pdbp, requests, xmltodict, fredapi, openpyxl]
+  - pip:
+      - -e .
+      - kaleido
+      - pdbp
+      - requests
+      - xmltodict
+      - fredapi
+      - openpyxl
+      - lxml
