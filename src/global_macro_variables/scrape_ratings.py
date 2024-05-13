@@ -5,6 +5,8 @@ import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 
+from global_macro_variables.clean_data import check_duplicates
+
 
 def get_all_ratings_from_countryeconomy(
     country_name_list,
@@ -15,16 +17,19 @@ def get_all_ratings_from_countryeconomy(
     result = pd.DataFrame()
 
     for country in country_name_list:
-        print(country)
         data = get_ratings_from_countryeconomy(
             country,
             rating_provider,
             country_name_url_dicionary[country],
             country_table_id_for_rating_provider_dictionary[country],
         )
-        result = pd.concat([result, data])
+
+        # Drop all columns where Date = NaT
+        data = data.dropna(subset=["Date"])
 
         result = pd.concat([result, data])
+
+    check_duplicates(result[["Date", "Country"]])
 
     return result
 
@@ -84,7 +89,6 @@ def clean_scraped_table(raw_data, country, rating_provider="Moodys"):
             "Long term Rating Foreign currency Rating(Outlook)": "Rating",
         },
     )
-
     # Add 'Country' and 'Rating Provider' columns
 
     df_clean = pd.DataFrame()
@@ -97,7 +101,12 @@ def clean_scraped_table(raw_data, country, rating_provider="Moodys"):
     df_clean["Country"] = country
     df_clean["Rating Provider"] = rating_provider
 
-    return df_clean
+    return df_clean.loc[
+        (df_clean["Rating"] != "P-1")
+        & (df_clean["Rating"] != "NP")
+        & (df_clean["Rating"] != ""),
+        :,
+    ]  # This drops all short term rating and empty entries
 
 
 def get_ratings_from_countryeconomy(
@@ -117,4 +126,5 @@ def get_ratings_from_countryeconomy(
         country_name_for_url,
         country_table_id_for_rating_provider,
     )
+
     return clean_scraped_table(raw_data, country, rating_provider)
